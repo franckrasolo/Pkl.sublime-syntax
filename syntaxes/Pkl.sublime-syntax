@@ -102,38 +102,37 @@ contexts:
       scope: constant.character.escape.unicode.pkl
       pop: true
 
-  string-interpolation:
-    - match: \\#*\(
-      scope: punctuation.section.interpolation.begin.pkl
-      push:
-        - clear_scopes: 1
-        - meta_scope: meta.interpolation.pkl
-        - match: \)
-          scope: punctuation.section.interpolation.end.pkl
-          pop: 2 # pops both the ( and the {escape-char}
-        - include: main
-
   escape-char-0:
-    - match: '(?=\\\()'
-      push: string-interpolation
+    - match: '\\\('
+      scope: punctuation.section.interpolation.begin.pkl
+      push: interpolation-body
     - match: '\\'
       scope: constant.character.escape.pkl
       push: escaped-char
 
   escape-char-1:
-    - match: '(?=\\#\()'
-      push: string-interpolation
+    - match: '\\#\('
+      scope: punctuation.section.interpolation.begin.pkl
+      push: interpolation-body
     - match: '\\#'
       scope: constant.character.escape.pkl
       push: escaped-char
 
   escape-char-2:
-    - match: '(?=\\##\()'
+    - match: '\\##\('
       scope: punctuation.section.interpolation.begin.pkl
-      push: string-interpolation
+      push: interpolation-body
     - match: '\\##'
       scope: constant.character.escape.pkl
       push: escaped-char
+
+  interpolation-body:
+    - clear_scopes: 1
+    - meta_scope: meta.interpolation.pkl
+    - match: \)
+      scope: punctuation.section.interpolation.end.pkl
+      pop: true
+    - include: main
 
   strings:
     - include: string-multi-line
