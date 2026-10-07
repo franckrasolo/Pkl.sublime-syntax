@@ -496,17 +496,18 @@ contexts:
     - meta_content_scope: meta.function.anonymous.body.pkl
     - match: '\{'
       scope: punctuation.section.brackets.begin.pkl
-      push:
-      - match: '\}'
-        scope: punctuation.section.function.end.pkl
-        pop: 2
-        set: after-expression
-      - include: main
+      push: lambda-func-block
     - include: main
     - match: '\n'
       pop: true
     - match: '(?=\S)'
       pop: true
+
+  lambda-func-block:
+    - match: '\}'
+      scope: punctuation.section.function.end.pkl
+      set: after-expression
+    - include: main
 
   isPattern:
     - match: '({{ident}})\s+(is)\s+'
