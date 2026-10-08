@@ -191,7 +191,7 @@ contexts:
         - include: escape-char-0
 
   constants:
-    - match: '\b(?:{{digits}}?\.{{digits}}(?:[eE][+-]?{{digits}})?|{{digits}}[eE][+-]?{{digits}})\b'
+    - match: '(?<![\w])(?:{{digits}}?\.{{digits}}(?:[eE][+-]?{{digits}})?|{{digits}}[eE][+-]?{{digits}})\b'
       scope: constant.numeric.float.pkl
       push: after-expression
     - match: '\b(?:0[xX]){{hexa}}\b'
