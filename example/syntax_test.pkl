@@ -593,6 +593,7 @@ functionType: (String, Int) -> Dynamic = (key, value) -> key
 
 unknownish: unknown = 1
 friends: Listing<module> = new {}
+genericNew = new Mapping<String, Listing<Bird>> {}
 
 
 class Bird {

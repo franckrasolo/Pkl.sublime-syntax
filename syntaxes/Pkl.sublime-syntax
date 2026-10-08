@@ -352,6 +352,8 @@ contexts:
           scope: invalid.illegal.pkl
         - match: '(?:{{ident}})'
           scope: entity.name.class.pkl
+        - match: '(?=\s*<)'
+          push: generic-angles
         - match: ''
           pop: true
 
