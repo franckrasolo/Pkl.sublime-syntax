@@ -471,6 +471,9 @@ contexts:
           scope: punctuation.section.parens.end.pkl
           pop: true
           set: after-expression
+        - match: '{{base_ident}}'
+          scope: variable.parameter.pkl
+          push: after-expression
         - include: main
     - match: '\s*(=)\s*'
       scope: keyword.operator.assignment.pkl
@@ -509,6 +512,9 @@ contexts:
         - match: \)
           scope: punctuation.section.parens.end.pkl
           pop: true
+        - match: '{{base_ident}}'
+          scope: variable.parameter.pkl
+          push: after-expression
         - include: main
     - match: '\s*\->\s*'
       scope: keyword.operator.assignment.pkl
