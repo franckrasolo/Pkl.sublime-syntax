@@ -412,8 +412,9 @@ contexts:
         - match: '\)'
           scope: punctuation.section.parens.end.pkl
           pop: true
-        - match: ','
+        - match: ',\s*'
           scope: punctuation.separator.pkl
+        - match: '\s+'
         - include: type
     - match: '\s*->\s*'
       scope: keyword.operator.pkl
