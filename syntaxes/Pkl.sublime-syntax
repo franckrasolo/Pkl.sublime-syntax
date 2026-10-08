@@ -379,6 +379,8 @@ contexts:
           pop: true
     - match: '\*'
       scope: punctuation.definition.annotation.pkl
+    - match: '\?'
+      scope: keyword.operator.nullable.pkl
     - match: '(?=\s*\()'
       push: type-constraint
     - match: ''
@@ -388,7 +390,7 @@ contexts:
     - meta_content_scope: meta.type.constraint.pkl
     - match: '\)'
       scope: punctuation.section.parens.end.pkl
-      set: after-expression
+      pop: true
     - match: '\('
       scope: punctuation.section.parens.begin.pkl
       push: type-constraint-contents

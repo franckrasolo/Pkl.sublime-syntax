@@ -583,6 +583,7 @@ listing: Listing<Bird>         // = new Listing { default = (index) -> new Bird 
 mapping: Mapping<String, Bird> // = new Mapping { default = (key) -> new Bird {} } 
 obj: Bird                      // = new Bird {} 
 nullable: Bird?                // = Null(new Bird {}) 
+constrainedNullable: String(contains("a"))? = "abc"
 union: *Bird|String            // = new Bird {} 
 stringLiteral: "Pigeon"        // = "Pigeon" 
 nullish: Null                  // = null
