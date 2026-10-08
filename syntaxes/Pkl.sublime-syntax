@@ -77,7 +77,7 @@ contexts:
     - include: keyword
     - include: base-built-ins
     - include: constants
-    - include: super
+    - include: annotation
     - include: operator
     - include: punctuation
     - include: identifiers
@@ -323,9 +323,11 @@ contexts:
     - match: ';'
       scope: punctuation.terminator.pkl
 
-  super:
-    - match: \@({{base_ident}})
-      scope: keyword.pkl
+  annotation:
+    - match: '(@)({{base_ident}}(?:\s*\.\s*{{base_ident}})*)'
+      captures:
+        1: punctuation.definition.annotation.pkl
+        2: entity.name.type.pkl
 
   identifiers:
     - match: '`'
