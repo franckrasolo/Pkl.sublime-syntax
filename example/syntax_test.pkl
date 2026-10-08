@@ -105,9 +105,17 @@ the species will be remembered.
 bird = "Dodo"
 str = #" \\\\\ \#n \#u{12AF} \#(bird) """"" "#
 str2 = ##" """"\\\\\ \# \##(bird) "##
+str3 = ###"a """" b \###(bird) "###
+str4 = ####"a """"" b \####(bird) "####
 mstrig #"""
   hello there \#(general_kenobi)
 """#
+mstrig3 ###"""
+  hello there \###(general_kenobi)
+"""###
+mstrig4 ####"""
+  hello there \####(general_kenobi)
+"""####
 
 strLength = "dodo".length 
 reversedStr = "dodo".reverse() 
