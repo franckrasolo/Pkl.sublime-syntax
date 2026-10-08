@@ -219,7 +219,7 @@ contexts:
       scope: constant.language.infinity.pkl
 
   operator:
-    - match: \.\.\.\?|\.\.\.|'\|>|\?\.|\?\?|!!|\->|\|'
+    - match: \.\.\.\?|\.\.\.|\|>|\?\.|\?\?|!!|\->|(?<!\|)\|(?!\|)
       scope: keyword.operator.pkl
     - match: '(==|!=|<=|>=|>|<)'
       scope: keyword.operator.comparison
