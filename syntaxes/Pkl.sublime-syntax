@@ -62,6 +62,8 @@ variables:
 
 contexts:
   main:
+    - match: '\A#!.*'
+      scope: comment.line.shebang.pkl
     - include: typealias
     - include: isPattern
     - include: asPattern
