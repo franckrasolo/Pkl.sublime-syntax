@@ -41,3 +41,56 @@ I checked `syntaxes/Pkl.sublime-syntax` against the [0.32.1 language reference](
 | 17 | Dead code: unused `type`/`baseType` variables (:20-21) and empty `\|\|` alternatives in `pklbase_types` (:41) and `instantiation` (:343). | grep |
 
 Not a gap (verified and **excluded**): block-comment nesting was *removed* in 0.29, so the current non-nesting behavior is correct despite the reference page still saying "nestable". Unparenthesized lambdas (`_ -> x`) are **not** valid Pkl, so no gap there.
+
+---
+
+## Resolution status
+
+All Tier 1 and Tier 2 items are fixed. Tier 3 is fixed except the string
+delimiter cap.
+
+| # | Status | Commit(s) |
+|---|--------|-----------|
+| 1 | Fixed | `8663304` |
+| 2 | Fixed | `09e90a5` |
+| 3 | Fixed | `9cfb0a2` |
+| 4 | Fixed | `aa9b026` |
+| 5 | Fixed (stdlib properties after `.`) | `396f106` |
+| 6 | Fixed | `fae468c` |
+| 7 | Fixed | `c910345`, `93b5772` |
+| 8 | Fixed | `4d22ce6` |
+| 9 | Fixed | `e12c9e8` |
+| 10 | Fixed | `e25df63` |
+| 11 | Fixed | `08694c4` |
+| 12 | Fixed | `fc17a2c` |
+| 13 | Partial: supports n = 0..4; n >= 5 open | `9f7c305` |
+| 14 | Fixed (regenerated from `pkl 0.31.0`) | `38fdceb` |
+| 15 | Fixed | `e51aea7` |
+| 16 | Fixed | `262f80d` |
+| 17 | Fixed | `3ac3d4d` |
+
+Changes made during remediation that were not in the original list:
+
+| Change | Commit |
+|--------|--------|
+| Scope function/lambda parameters as `variable.parameter.pkl` | `1fda13a` |
+| Scope type tests with a non-identifier left side (`42 is Int`) | `5d7cfee` |
+
+### Open / deferred
+
+- **String delimiters n >= 5.** Truly arbitrary counts are not expressible
+  in TextMate. The Sublime-native parent-capture backreference approach
+  panics syntect (`invalid backref number/name`), which would crash `bat`,
+  so the cap is four pounds.
+- **Tree-sitter scope parity.** Identifiers are scoped `meta.name.pkl`
+  rather than `variable`, and interpolation contents likewise, so themes
+  built for tree-sitter captures (`@variable`, `@escape`, ...) colour them
+  differently. This is a scope-naming pass, not a tokenization gap.
+
+Note on escapes/interpolation: verified against `Lexer.java` and
+`apple/tree-sitter-pkl/grammar.js` — a custom-delimiter escape or
+interpolation marker is `\` followed by exactly n pounds (`\#` for `#"`,
+`\##` for `##"`, ...). For n = 0..4 this now matches the official
+behaviour, including leaving wrong-pound-count sequences as literal
+content.
+
