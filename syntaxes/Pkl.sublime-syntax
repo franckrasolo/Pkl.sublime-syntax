@@ -244,7 +244,7 @@ contexts:
       scope: support.function.pkl
 
   keyword:
-    - match: \b(protected|override|record|delete|match|case|vararg|const)\b
+    - match: \b(protected|override|record|delete|case|switch|vararg|const)\b
       scope: keyword.other.pkl
     - match: '\b(read[?*]?|import[*]?)\s*'
       scope: keyword.import.pkl
