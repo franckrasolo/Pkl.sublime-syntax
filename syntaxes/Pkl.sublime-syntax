@@ -381,6 +381,8 @@ contexts:
       scope: punctuation.definition.annotation.pkl
     - match: '\?'
       scope: keyword.operator.nullable.pkl
+    - match: '(?=\([^()]*\)\s*->)'
+      push: function-type
     - match: '(?=\s*\()'
       push: type-constraint
     - match: ''
@@ -400,6 +402,24 @@ contexts:
       pop: true
     - include: stdblib-built-ins
     - include: main
+
+  function-type:
+    - meta_content_scope: meta.type.function.pkl
+    - match: '\('
+      scope: punctuation.section.parens.begin.pkl
+      push:
+        - meta_content_scope: meta.type.function.parameters.pkl
+        - match: '\)'
+          scope: punctuation.section.parens.end.pkl
+          pop: true
+        - match: ','
+          scope: punctuation.separator.pkl
+        - include: type
+    - match: '\s*->\s*'
+      scope: keyword.operator.pkl
+      push: type
+    - match: ''
+      pop: true
 
   generic-angles:
     - meta_content_scope: meta.generic.pkl

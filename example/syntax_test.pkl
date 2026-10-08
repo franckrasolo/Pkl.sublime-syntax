@@ -589,6 +589,7 @@ stringLiteral: "Pigeon"        // = "Pigeon"
 nullish: Null                  // = null
 mixup: Set<String|*Uri, *UInt16|Bird>(this <= 9000)
 nested: Listing<Mapping<String, Base>>
+functionType: (String, Int) -> Dynamic = (key, value) -> key
 
 unknownish: unknown = 1
 friends: Listing<module> = new {}
