@@ -712,6 +712,9 @@ typealias StrangeString = String|Int
 
 typealias StringLiteral = "this"|"is"|"a"|"string"|"litteral"
 
+typealias StringMap<Value> = Map<String, Value>
+typealias Flip<A, B> = Pair<B, A>
+
 /// A common [Bird] found in large cities.
 pigeon: Bird = new {
   name = "Pigeon"

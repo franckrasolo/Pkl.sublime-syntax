@@ -452,11 +452,24 @@ contexts:
 
   typealias-type:
     - meta_scope: meta.typealias.pkl
+    - match: '<'
+      scope: punctuation.definition.generic.begin.pkl
+      push: typealias-type-params
     - match: '=\s*'
       scope: keyword.operator.assignment.pkl
       push: type
     - match: '(?=\S)'
       pop: true
+
+  typealias-type-params:
+    - meta_content_scope: meta.generic.pkl
+    - match: '>'
+      scope: punctuation.definition.generic.end.pkl
+      pop: true
+    - match: ','
+      scope: punctuation.separator.pkl
+    - match: '{{base_ident}}'
+      scope: entity.name.type.pkl
 
   functions:
     - match: '\b(function)\s+({{ident}})\s*'
