@@ -318,6 +318,8 @@ contexts:
       scope: support.function.built.pkl
 
   punctuation:
+    - match: ','
+      scope: punctuation.separator.pkl
     - match: ';'
       scope: punctuation.terminator.pkl
 
