@@ -16,9 +16,6 @@ variables:
   base_ident: '(?:[\p{L}_$][\p{L}0-9_$]*\b)' # can't start with a number
   quoted_ident: '(?:`(?:{{base_ident}}\s*)+`)'
   ident: '(?:{{base_ident}}|{{quoted_ident}})'
-  # baseType: '(?:{{ident}}\s*(?:<[^>]*>)?\s*(?:\([^)]*\))?\s*\??)' # eg: Listing<Mapping>(something)?
-  baseType: '(?:\*?{{ident}}\s*(?:<[^>]*>)?)' # eg: Listing<Mapping>
-  type: '(?:{{baseType}}\s*(\|\s*{{baseType}})*)' # eg: Listing<Float>|Mapping<Int>?|Duration
 
   # We let pkl do the heavy lifting
   # import "pkl:base"
@@ -38,7 +35,7 @@ variables:
   pklbase_type_other:  '(?:Since|Deprecated|AlsoKnownAs|Unlisted|DocExample|SourceCode|ModuleInfo|ModuleOutput|PcfRenderer|RenderDirective|PcfRenderDirective|JsonRenderer|YamlRenderer|PListRenderer|PropertiesRenderer|Resource|RegexMatch|Dynamic|Listing|Mapping)'
   # #"(?:\#(bm.classes.filter((k,v)->v.modifiers.contains("abstract")).keys.join("|")))"#
   pklbase_type_abstract:  '(?:Any|Module|Annotation|ValueRenderer|Number|Object|Typed|Function|Collection|BaseValueRenderer|BytesRenderer)'
-  pklbase_types: '(?:{{pklbase_type_open}}|{{pklbase_type_abstract}}||{{pklbase_type_external}}||{{pklbase_type_other}})'
+  pklbase_types: '(?:{{pklbase_type_open}}|{{pklbase_type_abstract}}|{{pklbase_type_external}}|{{pklbase_type_other}})'
 
   # #"(?:\#(reflect.Module(base).moduleClass.methods.keys.join("|)")))"#
   pklbase_module_methods: '(?:Regex|Undefined|TODO|Null|Pair|IntSeq|List|Set|Map|Bytes)'
@@ -400,7 +397,7 @@ contexts:
           scope: support.type.pkl
         - match: '(?:{{pklbase_type_other}}|{{pklbase_type_open}})'
           scope: support.type.pkl
-        - match: '(?:{{pklbase_type_external}}||{{pklbase_type_abstract}}|{{pklbase_typealiases}})'
+        - match: '(?:{{pklbase_type_external}}|{{pklbase_type_abstract}}|{{pklbase_typealiases}})'
           scope: invalid.illegal.pkl
         - match: '(?:{{ident}})'
           scope: entity.name.class.pkl
