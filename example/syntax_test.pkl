@@ -589,6 +589,9 @@ nullish: Null                  // = null
 mixup: Set<String|*Uri, *UInt16|Bird>(this <= 9000)
 nested: Listing<Mapping<String, Base>>
 
+unknownish: unknown = 1
+friends: Listing<module> = new {}
+
 
 class Bird {
   name: String(length >= 3)     //  

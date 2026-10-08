@@ -361,6 +361,8 @@ contexts:
       scope: support.type.enum.pkl
     - match: \b(nothing)\b
       scope: storage.type.class.pkl
+    - match: '\b(unknown|module|this)\b'
+      scope: storage.type.pkl
     - match: '\b{{ident}}\b'
       scope: entity.name.type.pkl
     - match: '\s*\|\s*'
