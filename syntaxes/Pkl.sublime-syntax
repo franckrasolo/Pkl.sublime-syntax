@@ -82,6 +82,8 @@ contexts:
     - include: brackets
 
   comments:
+    - match: ///.*
+      scope: comment.line.documentation.pkl
     - match: //.*
       scope: comment.line.pkl
     - match: '/\*'
