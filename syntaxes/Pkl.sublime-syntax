@@ -373,7 +373,7 @@ contexts:
       scope: storage.type.class.pkl
     - match: '\b(unknown|module|this)\b'
       scope: storage.type.pkl
-    - match: '\b{{ident}}\b'
+    - match: '\b{{base_ident}}(?:\s*\.\s*{{base_ident}})*'
       scope: entity.name.type.pkl
     - match: '\s*\|\s*'
       scope: punctuation.separator.sequence.pkl
