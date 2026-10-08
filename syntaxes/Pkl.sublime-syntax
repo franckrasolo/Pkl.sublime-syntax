@@ -28,34 +28,34 @@ variables:
   # function getProperties(module_mirror): Set = module_mirror.classes.flatMap((k,v) -> Map(k, v.properties.keys)).fold(Set(), (S, k, v) -> S.add(v)).flatten()
   #
   # #"(?:\#(reflect.Module(base).typeAliases.keys.join("|")))"#
-  pklbase_typealiases: '(?:NonNull|Int8|Int16|Int32|UInt8|UInt16|UInt32|UInt|Comparable|Char|Uri|DurationUnit|DataSizeUnit|Mixin)'
+  pklbase_typealiases: '(?:NonNull|Int8|Int16|Int32|UInt8|UInt16|UInt32|UInt|Comparable|Char|Uri|DurationUnit|DataSizeUnit|Mixin|Charset)'
 
   # #"(?:\#(bm.classes.filter((k,v)->v.modifiers.contains("external")).keys.join("|")))"#
-  pklbase_type_external:  '(?:Any|Null|Class|TypeAlias|Module|Number|Int|Float|Boolean|String|Regex|Duration|DataSize|Object|Function|Function0|Function1|Function2|Function3|Function4|Function5|Pair|Collection|IntSeq|VarArgs|List|Set|Map)'
+  pklbase_type_external:  '(?:Any|Null|Class|TypeAlias|Module|Number|Int|Float|Boolean|String|Regex|Duration|DataSize|Object|Function|Function0|Function1|Function2|Function3|Function4|Function5|Pair|Collection|IntSeq|VarArgs|List|Set|Map|Bytes)'
   # #"(?:\#(bm.classes.filter((k,v)->v.modifiers.contains("open")).keys.join("|")))"#
-  pklbase_type_open:  '(?:FileOutput)'
+  pklbase_type_open:  '(?:FileOutput|ConvertProperty)'
   # #"(?:\#(bm.classes.filter((k,v)->v.modifiers.isEmpty).keys.join("|")))"#
   pklbase_type_other:  '(?:Since|Deprecated|AlsoKnownAs|Unlisted|DocExample|SourceCode|ModuleInfo|ModuleOutput|PcfRenderer|RenderDirective|PcfRenderDirective|JsonRenderer|YamlRenderer|PListRenderer|PropertiesRenderer|Resource|RegexMatch|Dynamic|Listing|Mapping)'
   # #"(?:\#(bm.classes.filter((k,v)->v.modifiers.contains("abstract")).keys.join("|")))"#
-  pklbase_type_abstract:  '(?:Any|Module|Annotation|ValueRenderer|Number|Object|Typed|Function|Collection)'
+  pklbase_type_abstract:  '(?:Any|Module|Annotation|ValueRenderer|Number|Object|Typed|Function|Collection|BaseValueRenderer|BytesRenderer)'
   pklbase_types: '(?:{{pklbase_type_open}}|{{pklbase_type_abstract}}||{{pklbase_type_external}}||{{pklbase_type_other}})'
 
   # #"(?:\#(reflect.Module(base).moduleClass.methods.keys.join("|)")))"#
-  pklbase_module_methods: '(?:Regex|Undefined|TODO|Null|Pair|IntSeq|List|Set|Map)'
+  pklbase_module_methods: '(?:Regex|Undefined|TODO|Null|Pair|IntSeq|List|Set|Map|Bytes)'
   # #"(?:\#(getMethods(reflect.Module(base)).join("|")))"#
-  pklbase_classes_methods: '(?:getClass|toString|ifNonNull|relativePathTo|renderDocument|renderValue|round|truncate|toInt|toFloat|toFixed|toDuration|toDataSize|isBetween|toRadixString|shl|shr|ushr|and|or|xor|toChar|implies|getOrNull|substring|substringOrNull|repeat|contains|matches|startsWith|endsWith|indexOf|indexOfOrNull|lastIndexOf|lastIndexOfOrNull|take|takeWhile|takeLast|takeLastWhile|drop|dropWhile|dropLast|dropLastWhile|replaceFirst|replaceLast|replaceAll|replaceFirstMapped|replaceLastMapped|replaceAllMapped|replaceRange|toUpperCase|toLowerCase|reverse|trim|trimStart|trimEnd|padStart|padEnd|split|capitalize|decapitalize|toIntOrNull|toFloatOrNull|toBoolean|toBooleanOrNull|findMatchesIn|matchEntire|toUnit|toBinaryUnit|toDecimalUnit|hasProperty|getProperty|getPropertyOrNull|toDynamic|toMap|length|toList|toTyped|isDistinctBy|distinctBy|fold|foldIndexed|join|toSet|containsKey|applyToList|apply|splitOrNull|partition|find|findOrNull|findLast|findLastOrNull|findIndex|findIndexOrNull|findLastIndex|findLastIndexOrNull|count|every|any|filter|filterNonNull|filterIndexed|filterIsInstance|map|mapIndexed|mapNonNull|flatMap|flatMapIndexed|flatten|add|foldBack|reduce|reduceOrNull|groupBy|minBy|minByOrNull|minWith|minWithOrNull|maxBy|maxByOrNull|maxWith|maxWithOrNull|sort|sortBy|sortWith|zip|transpose|toListing|step|sublist|sublistOrNull|replace|replaceOrNull|replaceRangeOrNull|intersect|difference|containsValue|put|remove|mapKeys|mapValues|toMapping)'
+  pklbase_classes_methods: '(?:getClass|toString|ifNonNull|relativePathTo|renderDocument|renderValue|round|truncate|toInt|toFloat|toFixed|toDuration|toDataSize|isBetween|toRadixString|shl|shr|ushr|and|or|xor|toChar|implies|getOrNull|substring|substringOrNull|repeat|contains|matches|startsWith|endsWith|indexOf|indexOfOrNull|lastIndexOf|lastIndexOfOrNull|take|takeWhile|takeLast|takeLastWhile|drop|dropWhile|dropLast|dropLastWhile|replaceFirst|replaceLast|replaceAll|replaceFirstMapped|replaceLastMapped|replaceAllMapped|replaceRange|toUpperCase|toLowerCase|reverse|trim|trimStart|trimEnd|padStart|padEnd|split|capitalize|decapitalize|toIntOrNull|toFloatOrNull|toBoolean|toBooleanOrNull|findMatchesIn|matchEntire|toUnit|toBinaryUnit|toDecimalUnit|hasProperty|getProperty|getPropertyOrNull|toDynamic|toMap|length|toList|toTyped|isDistinctBy|distinctBy|fold|foldIndexed|join|toSet|containsKey|applyToList|apply|splitOrNull|partition|find|findOrNull|findLast|findLastOrNull|findIndex|findIndexOrNull|findLastIndex|findLastIndexOrNull|count|every|any|filter|filterNonNull|filterIndexed|filterIsInstance|map|mapIndexed|mapNonNull|flatMap|flatMapIndexed|flatten|add|foldBack|reduce|reduceOrNull|groupBy|minBy|minByOrNull|minWith|minWithOrNull|maxBy|maxByOrNull|maxWith|maxWithOrNull|sort|sortBy|sortWith|zip|toListing|step|sublist|sublistOrNull|replace|replaceOrNull|replaceRangeOrNull|intersect|difference|containsValue|put|remove|mapKeys|mapValues|toMapping|decodeToString|encodeToBytes|getOrDefault|mapNonNullIndexed|splitLimit|toBytes)'
 
   # #"(?:\#(reflect.Module(base).moduleClass.properties.keys.join("|")))"#
   pklbase_module_properties: '(?:NaN|Infinity)'
   # #"(?:\#(getProperties(reflect.Module(base)).join("|")))"#
-  pklbase_classes_properties: '(?:simpleName|output|version|since|message|replaceWith|names|subjects|language|prefix|suffix|minPklVersion|value|renderer|text|files|converters|extension|indent|omitNullProperties|useCustomStringDelimiters|before|after|mode|indentWidth|isStream|restrictCharset|uri|base64|md5|sha1|sha256|sha256Int|ns|us|ms|s|min|h|d|b|kb|mb|gb|tb|pb|kib|mib|gib|tib|pib|sign|abs|ceil|floor|isPositive|isFinite|isInfinite|isNaN|isNonZero|inv|isEven|isOdd|length|lastIndex|isEmpty|isBlank|isRegex|base64Decoded|chars|codePoints|pattern|groupCount|start|end|groups|isoString|unit|isBinaryUnit|isDecimalUnit|default|isDistinct|distinct|keys|first|second|key|firstOrNull|rest|restOrNull|last|lastOrNull|single|singleOrNull|minOrNull|max|maxOrNull|step|values|entries)'
+  pklbase_classes_properties: '(?:simpleName|output|version|since|message|replaceWith|names|subjects|language|prefix|suffix|minPklVersion|value|renderer|text|files|converters|extension|indent|omitNullProperties|useCustomStringDelimiters|before|after|mode|indentWidth|isStream|restrictCharset|uri|base64|md5|sha1|sha256|sha256Int|ns|us|ms|s|min|h|d|b|kb|mb|gb|tb|pb|kib|mib|gib|tib|pib|sign|abs|ceil|floor|isPositive|isFinite|isInfinite|isNaN|isNonZero|inv|isEven|isOdd|length|lastIndex|isEmpty|isBlank|isRegex|base64Decoded|chars|codePoints|pattern|groupCount|start|end|groups|isoString|unit|isBinaryUnit|isDecimalUnit|default|isDistinct|distinct|keys|first|second|key|firstOrNull|rest|restOrNull|last|lastOrNull|single|singleOrNull|minOrNull|max|maxOrNull|step|values|entries|base64DecodedBytes|bytes|convertPropertyTransformers|hex|isBase64|isNotBlank|isNotEmpty|render|size)'
 
   # import "pkl:math"
   # #"(?:\#(reflect.Module(math).moduleClass.properties.keys).join("|")))"#
   pklmath_constant: '(?:minInt|minInt8|minInt16|minInt32|maxInt|maxInt8|maxInt16|maxInt32|maxUInt|maxUInt8|maxUInt16|maxUInt32|minFiniteFloat|maxFiniteFloat|minPositiveFloat|e|pi)'
 
   # #"(?:\#(reflect.Module(math).moduleClass.methods.keys.join("|")))"#
-  pklmath_functions: '(?:exp|sqrt|cbrt|log|log2|log10|sin|cos|tan|asin|acos|atan|gcd|lcm|isPowerOfTwo|min|max)'
+  pklmath_functions: '(?:exp|sqrt|cbrt|log|log2|log10|sin|cos|tan|asin|acos|atan|gcd|lcm|isPowerOfTwo|min|max|atan2)'
 
   duration_unit: '(?:ns|us|ms|s|min|h|d)'
   data_size_unit: '(?:b|kb|kib|mb|mib|gb|gib|tb|tib|pb|pib)'
@@ -237,14 +237,14 @@ contexts:
       scope: keyword.operator.logical
 
   base-built-ins:
-    - match: '{{pklbase_module_methods}}'
+    - match: '{{pklbase_module_methods}}\b'
       scope: support.function.pkl
     - match: '\bmath\.({{pklmath_functions}})\b'
       captures:
         1: support.function.pkl
         
   stdblib-built-ins:
-    - match: '{{pklbase_classes_methods}}'
+    - match: '{{pklbase_classes_methods}}\b'
       scope: support.function.pkl
 
   stdblib-properties:
@@ -590,10 +590,10 @@ contexts:
       scope: punctuation.accessor.dot.pkl
       push:
         - include: stdblib-built-ins
-        - match: '{{duration_unit}}'
+        - match: '{{duration_unit}}\b'
           scope: support.type.duration.pkl
           push: after-expression
-        - match: '{{data_size_unit}}'
+        - match: '{{data_size_unit}}\b'
           scope: support.type.data_size.pkl
           push: after-expression
         - include: stdblib-properties
