@@ -618,6 +618,9 @@ contexts:
         1: meta.name.pkl
         2: keyword.pkl
       push: type
+    - match: '\b(is)\s+'
+      scope: keyword.pkl
+      push: type
 
   asPattern:
     - match: '(as)\s+'
